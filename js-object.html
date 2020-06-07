@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>js面向对象tab实例</title>
+	<style>
+		#tab{max-width: 280px;height: 300px;border: 1px solid #ccc;margin: 0 auto;}
+		#tab input.active{background: #fcc;}
+		#tab div{display: none;border-top: 1px solid #ccc;}
+		#tab div.active{display: block;}
+	</style>
+</head>
+<body>
+	<div id="tab">
+		<input type="button" value="按钮一" class="active">
+		<input type="button" value="按钮二">
+		<input type="button" value="按钮三">
+
+		<div class="active">内容一</div>
+		<div>内容二</div>
+		<div>内容三</div>
+	</div>
+
+<script>
+	function FnTab(wrapId) {
+		this.obj = document.getElementById(wrapId);
+		this.btns = this.obj.getElementsByTagName('input');
+		this.cons = this.obj.getElementsByTagName('div');
+		this.change = function(obj){
+			for(var i = 0, len = this.btns.length; i < len; i++){
+				this.btns[i].className = '';
+				this.cons[i].className = '';
+			}
+			obj.className = 'active';
+			this.cons[obj.index].className = 'active';
+		}
+
+		var _this = this;
+		for(var i = 0, len = this.btns.length; i < len; i++){
+			this.btns[i].index = i;
+			this.btns[i].onclick= function(){
+				_this.change(this);
+			}
+		}
+	}
+	var tabFn = new FnTab('tab');
+</script>
+</body>
+</html>
