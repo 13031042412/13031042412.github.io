@@ -22,7 +22,24 @@
 		<div>内容三</div>
 	</div>
 
+	<hr>
+
+	<div style="max-width: 280px;margin: 0 auto;">
+		<div>
+            <button id="show" type="button">显示</button>
+            <button id="hide" class="hide" type="button">隐藏</button>
+        </div>
+        <div>
+            <img id="image"
+                src="http://t9.baidu.com/it/u=1761131378,1355750940&fm=79&app=86&size=h300&n=0&g=4n&f=jpeg?sec=1593849318&t=4effe53840b1ccadced4e76d8c33b134"
+                alt="">
+        </div>
+	</div>
+
 <script>
+
+
+	// 选项卡切换
 	function FnTab(wrapId) {
 		this.obj = document.getElementById(wrapId);
 		this.btns = this.obj.getElementsByTagName('input');
@@ -45,6 +62,47 @@
 		}
 	}
 	var tabFn = new FnTab('tab');
+
+
+	// 图片显示/隐藏
+	 var $ = function (selector) {
+        return document.querySelectorAll(selector)[0];
+    }
+
+    function Img(option) {
+        this.option = {
+            id: '#image',
+            type: 'image',
+            showBtn: $('.show'),
+            hideBtn: $('.hide')
+        }
+        this.elem = $(this.option.id);
+        if (JSON.stringify(option) != '{}') {
+            for (item in option) {
+                this.option[item] = option[item];
+            }
+        }
+
+        var that = this;
+        this.option.showBtn.onclick = function () {
+            that.elem.style.display = 'block';
+        };
+        this.option.hideBtn.onclick = function () {
+            that.elem.style.display = 'none';
+        };
+    }
+
+    var img = new Img({
+        id: 'image',
+        showBtn: $('#show'),
+        hideBtn: $('#hide')
+    });
+
+
+
+
+
+
 </script>
 </body>
 </html>
