@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>kindeditor</title>
+	<style>
+	    .ke-icon-hello {
+	        background-image: url(../skins/default/default.gif);
+	        background-position: 0px -496px;
+	        width: 16px;
+	        height: 16px;
+	    }
+	</style>
+
+	<script charset="utf-8" src="kindeditor/kindeditor-all-min.js"></script>
+	<script charset="utf-8" src="kindeditor/lang/zh-CN.js"></script>
+</head>
+<body>
+	
+
+<textarea id="editor">123</textarea>
+
+<button onclick="showhtml()" type="button">获取内容</button>
+
+<script>
+KindEditor.lang({
+        hello : '你好'
+});
+
+
+	KindEditor.ready(function(K) {
+		window.editor = K.create('#editor', {
+			width : '100%',themeType : 'simple',
+			minHeight: '300px',
+			items: [
+			        'source', '|', 'undo', 'redo', '|', 'preview', 'template', 'code', 'cut', 'copy', 'paste',
+			        'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+			        'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+			        'superscript', 'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen', '/',
+			        'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+			        'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image',
+			         'media', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
+			        'anchor', 'link', 'unlink', '|', 'hello', 'about'
+			],
+            afterBlur: function () {
+                this.sync();
+            },
+			afterUpload : function(url) {
+                console.log(url);
+            },
+            // uploadJson: 'php/upload_json.php', //文件上传接口地址
+		});
+    });
+
+	function showhtml() {
+		console.log(editor.html())
+	}
+    
+
+
+    
+</script>
+</body>
+</html>
