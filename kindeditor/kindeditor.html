@@ -17,11 +17,52 @@
 </head>
 <body>
 	
-
 <textarea id="editor">123</textarea>
 
 <button onclick="showhtml()" type="button">获取内容</button>
 
+<pre>
+	编辑器(Editor) API
+	Contents
+
+	编辑器(Editor) API
+	K.create(expr [, options])
+	K.remove(expr)
+	K.sync(expr)
+	K.html(expr, val)
+	K.appendHtml(expr, val)
+	K.insertHtml(expr, val)
+	remove()
+	html()
+	html(val)
+	fullHtml()
+	text()
+	text(val)
+	selectedHtml()
+	count([mode])
+	isEmpty()
+	insertHtml(val)
+	appendHtml(val)
+	focus()
+	blur()
+	sync()
+	exec(commandName)
+	lang(name)
+	loadPlugin(name , fn)
+	clickToolbar(name)
+	clickToolbar(name [, fn])
+	addBookmark()
+	undo()
+	redo()
+	fullscreen([bool])
+	readonly(isReadonly)
+	createMenu(options)
+	hideMenu()
+	addContextmenu(item)
+	hideContextmenu()
+	createDialog(options)
+	hideDialog()
+</pre>
 <script>
 KindEditor.lang({
         hello : '你好'
