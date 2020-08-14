@@ -8,8 +8,11 @@
 </head>
 <body>
 	<h3>右键查看源代码</h3>
+
+
 	<!-- codeUrl 是要转化的地址，一般后台接口返回 -->
 	<input type="hidden" id="codeUrl" value="https://www.baidu.com/">
+
 	<!-- 定义二维码的容器，可以设置自定义样式 -->
 	<div id="qrcode" class="mt-4">
         <img src="http://css.jiangshi.org/v2/images/weixin.jpg?v=1.314723" alt="">
@@ -17,6 +20,7 @@
 
 
 	<script>
+		// 脚本用法
 		$('#qrcode').empty().qrcode({
             render: "canvas",
             width: 120,
