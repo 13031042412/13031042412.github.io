@@ -108,6 +108,11 @@ export default {
                     change: false,
                 },
                 {
+                    name: "flot",
+                    desc: "扁平化嵌套数组、扁平化空项",
+                    change: false,
+                },
+                {
                     name: "includes",
                     desc: "判断一个数组是否包含一个指定的值。",
                     change: false,

@@ -140,6 +140,15 @@ export default {
                         version: "ECMAScript 6",
                     };
                     break;
+                case "flot":
+                    return {
+                        con1:
+                            "<p>var newArray = arr.flat(depth);//depth是参数；指定要提取嵌套数组的结构深度，默认值为 1；是一个可选的参数；flat的返回值是一个包含将数组与子数组中所有元素的新数组。</p>" +
+                            "<p>扁平化空项： 1 var arr4 = [1, 2, , 4, 5]; 2 arr4.flat(); 3 // [1, 2, 4, 5] </p>",
+                        con2: "Array.flat(depth)",
+                        version: "ECMAScript 6",
+                    };
+                    break;
                 case "includes":
                     return {
                         con1:
