@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+	<title>微信浏览器图片预览</title>
+	<script src="../jQueryv331.min.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<style>
+		img{max-width:100%;display:block;}
+	</style>
+</head>
+<body>
+<h3>微信浏览器图片预览</h3>
+<div class="wrap" style="max-width:600px;margin:0 auto;">
+	<p>这是一段文本。<br>11</p><br>
+	<img class="lazy" src="../img/001.jpg" alt="">
+	<p>这是一段文本。<br>22</p><br>
+	<img class="lazy" src="../img/002.jpg" alt="">
+	<p>这是一段文本。<br>33</p><br>
+	<img class="lazy" src="../img/003.jpg" alt="">
+	<p>这是一段文本。<br>44</p><br>
+	<img class="lazy" src="../img/004.jpg" alt="">
+	<p>这是一段文本。<br>55</p><br>
+	<img class="lazy" src="../img/005.jpg" alt="">
+	<p>这是一段文本。<br>66</p><br>
+	<img class="lazy" src="../img/006.jpg" alt="">
+	<p>这是一段文本。<br>77</p><br>
+	<img class="lazy" src="../img/007.jpg" alt="">
+</div>
+
+</body>
+</html>
+<script>
+$(function() {
+    // 点击预览图片
+    $('.wrap').on('click','img',function(e){
+        e.preventDefault();
+        var src = $(this).attr('src'); //相对路径无法显示
+        var imgs = $('.wrap').find('img');
+        var list = [];
+        for (var i = 0; i < imgs.length; i++) {
+            list.push($(imgs[i]).attr('src'));
+        }
+        wx.previewImage({
+            current: src, // 当前显示图片的http链接
+            urls: list // 需要预览的图片http链接列表
+
+        });
+    });
+	
+
+});
+</script>

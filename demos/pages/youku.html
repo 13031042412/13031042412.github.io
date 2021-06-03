@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
+	<title>youku player pc</title>
+	<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript" src="//player.youku.com/jsapi"></script>
+	<style>
+	*{margin:0;padding:0;}
+	</style>
+</head>
+<body>
+
+	<div id="youkuplayer"style="width:100%;max-width:600px;min-height:200px;"></div>
+	<br>
+	<!-- <input id="ipt" type="text" style="padding:5px;" placeholder="优酷视频id"> -->
+	<button id="btn" style="padding:4px;vertical-align:middle;">视频详情</button>
+
+</body>
+</html>
+<script type="text/javascript">
+var player = new YKU.Player('youkuplayer',{
+	styleid: '0',
+	client_id: '0edbfd2e4fc91b72',
+	vid: 'XMzcxNjA5OTU5Ng==',
+	newPlayer: true
+});
+$(function(){
+	$('#btn').click(function(){
+		$.ajax({
+			type:'get',
+			url:'https://api.youku.com/videos/show.json',
+			data:{client_id:'0edbfd2e4fc91b72',video_id:'XMzcxNjA5OTU5Ng=='},
+			success: function(info){
+				console.log(info)
+			}
+		})
+	})
+})
+
+</script>

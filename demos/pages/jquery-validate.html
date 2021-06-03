@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>test</title>
+<link rel="stylesheet" href="">
+<script src="../jQueryv331.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-validate/1.17.0/jquery.validate.js"></script>
+<!-- <script src="https://cdn.bootcss.com/jquery-validate/1.17.0/localization/messages_zh.js"></script> -->
+<!-- <script src="https://cdn.bootcss.com/jquery-validate/1.17.0/additional-methods.js"></script> -->
+<style>
+    .pt_10{padding-top: 10px;}.error{color: red;}
+    label:first-child{display: inline-block;width: 80px;text-align: right;}
+</style>
+</head>
+<body>
+
+<div style="max-width: 640px;margin: 0 auto;">
+<form id="demoForm" action="">
+    <fieldset>
+        <legend>表单验证</legend>
+        <div class="pt_10">
+            <label>手机号</label>
+            <input name="mobile" type="tel" required>
+        </div>
+        <div class="pt_10">
+            <label>密码</label>
+            <input name="pwd" type="password" id="password" rangelength="[6,12]" placeholder="请输入6-12位数字字母" required>
+        </div>
+        <div class="pt_10">
+            <label>确认密码</label>
+            <input name="checkpwd" type="password" equalTo="#password">
+        </div>
+        <div class="pt_10">
+            <label>邮箱</label>
+            <input name="email" type="email" email>
+        </div>
+        <div class="pt_10">
+            <label>网址</label>
+            <input name="url" type="url" url title="wo de url.">
+        </div>
+        <select id="jungle" name="jungle" title="Please select something!" required>
+    <option value=""></option>
+    <option value="1">Buga</option>
+    <option value="2">Baga</option>
+    <option value="3">Oi</option>
+</select>
+        <div class="pt_10">
+            <label></label>
+            <input type="submit" value="提交">
+        </div>
+    </fieldset>
+</form>
+<form id="demoForm2" action="">
+    <fieldset>
+        <legend>表单验证2</legend>
+        <p>将校验规则写到 js 代码中</p>
+        <div class="pt_10">
+            <label>手机号</label>
+            <input name="mobile" type="tel">
+        </div>
+        <div class="pt_10">
+            <label>密码</label>
+            <input name="pwd" type="password" id="form2password" placeholder="请输入6-12位数字字母">
+        </div>
+        <div class="pt_10">
+            <label>确认密码</label>
+            <input name="checkpwd" type="password">
+        </div>
+        <div class="pt_10">
+            <label>邮箱</label>
+            <input name="email" type="email">
+        </div>
+        <div class="pt_10">
+            <label>网址</label>
+            <input name="url" type="url">
+        </div>
+        <div class="pt_10">
+            <label></label>
+            <input type="submit" value="提交">
+        </div>
+    </fieldset>
+</form>
+</div>
+
+
+
+
+
+<script>
+// 这是中文提示,可引用脚本
+$.extend($.validator.messages,{
+    required:"这是必填字段",
+    remote:"请修正此字段",
+    email:"请输入有效的电子邮件地址",
+    url:"请输入有效的网址",
+    date:"请输入有效的日期",
+    dateISO:"请输入有效的日期 (YYYY-MM-DD)",
+    number:"请输入有效的数字",
+    digits:"只能输入数字",
+    creditcard:"请输入有效的信用卡号码",
+    equalTo:"你的输入不相同",
+    extension:"请输入有效的后缀",
+    maxlength:$.validator.format("最多可以输入 {0} 个字符"),
+    minlength:$.validator.format("最少要输入 {0} 个字符"),
+    rangelength:$.validator.format("请输入长度在 {0} 到 {1} 之间的字符串"),
+    range:$.validator.format("请输入范围在 {0} 到 {1} 之间的数值"),
+    max:$.validator.format("请输入不大于 {0} 的数值"),
+    min:$.validator.format("请输入不小于 {0} 的数值")
+});
+// 设置默认的表单行为: 验证无误后的提交事件
+// $.validator.setDefaults({
+//     submitHandler: function() {
+//       alert("提交事件!");
+//     }
+// });
+
+$(function(){
+    // 添加自定义校验  要在 additional-methods.js 文件中添加或者在 jquery.validate.js 文件中添加。建议一般写在 additional-methods.js 文件中。
+    jQuery.validator.addMethod("isTel", function(value, element) {   
+        var tel = /^1[345678]\d{9}$/;
+        return this.optional(element) || (tel.test(value));
+    }, "请正确填写您的手机号");
+    jQuery.validator.addMethod("isPwd", function(value, element) {   
+        var reg = /^[\w]{6,12}$/;
+        return this.optional(element) || (reg.test(value));
+    }, "请正确填写您的密码");
+
+
+    $("#demoForm").validate({
+        submitHandler: function(form) {
+          alert("提交事件!");
+          form.submit();
+        }
+    });
+    $("#demoForm2").validate({
+        // 校验规则
+        rules: {
+            mobile: {"required": true, isTel: true},
+            pwd: {
+                required: true,
+                isPwd: true
+            },
+            checkpwd: {
+                equalTo: "#form2password"
+            },
+            email: "email",
+            url: "url"
+        },
+        // 设置提示信息(不设置为默认提示)
+        messages: {
+            // mobile: "请输入正确的手机号",
+            pwd: "请输入6-12位数字字母",
+            checkpwd: "两次密码输入不一致"
+        },
+        // 只验证不提交表单
+        debug:true,
+        // 当前表单提交
+        submitHandler: function(form) {
+          alert("提交事件!");
+          form.submit();
+        },
+        // 设置提示信息的位置
+        // errorPlacement: function(error, element) {
+        //     // Append error within linked label
+        //     $( element ).closest( "form" ).find( "label[for='" + element.attr( "id" ) + "']" )
+        //                 .append( error );
+        // },
+        errorElement: "p",  //默认: label
+        errorClass: 'error',  //默认: error
+
+    });
+
+
+})
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
+<title>vue</title>
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+<!-- <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script> -->
+</head>
+<body>
+
+<div id="app">
+	<ol>
+		<todo-item v-for="item in groceryList" v-bind:todo="item" :id="item.id" v-bind:key="item.id"></todo-item>
+	</ol>
+	<h3 class="text-center">JS 网络图片</h3>
+	<!-- <ul class="list-group">
+		<li class="list-group-item" v-for="i in pics"><img class="img-fluid" :src="i.src" :alt="i.name"></li>
+	</ul> -->
+	<div class="container">
+		<div class="card mb-2" v-for="i in pics">
+			<div class="card-header">{{i.name}}</div>
+			<div class="card-body"><img class="img-fluid" :src="i.src" :alt="i.name"></div> 
+		</div>
+	</div>
+
+</div>
+
+    
+<script>
+
+Vue.component('todo-item', {
+	props:['todo', 'id'],
+	template: '<li>{{todo.text}}{{id}}</li>'
+})
+
+var app = new Vue({
+	el: '#app',
+	data: {
+		groceryList: [
+			{id: 0, text: 'Vegetables'},
+			{id: 1, text: 'Cheese'},
+			{id: 2, text: 'Whatever else humans are supposed to eat'}
+		],
+		pics: [
+			{name:'数组', src:'https://7n.w3cschool.cn/attachments/image/20170306/1488780841257569.gif'},
+			{name:'DOM操作', src:'https://7n.w3cschool.cn/attachments/image/20171209/1512802772947435.png'},
+			{name:'变量', src:'https://7n.w3cschool.cn/attachments/image/20160910/1473476935836031.gif'},
+			{name:'函数', src:'https://7n.w3cschool.cn/attachments/image/20160910/1473476945739921.gif'},
+			{name:'运算符', src:'https://7n.w3cschool.cn/attachments/image/20180205/1517813267879178.png'},
+			{name:'流程语句', src:'https://7n.w3cschool.cn/attachments/image/20160910/1473476952296809.gif'},
+			{name:'数据类型', src:'https://7n.w3cschool.cn/attachments/image/20160910/1473476960662589.gif'},
+			{name:'正则表达式', src:'https://7n.w3cschool.cn/attachments/image/20160910/1473476975191386.gif'},
+			{name:'字符串函数', src:'https://7n.w3cschool.cn/attachments/image/20160910/1473476981856911.gif'},
+			{name:'window对象', src:'https://7n.w3cschool.cn/attachments/image/20160910/1473476987139357.gif'}
+		]
+	}
+})
+
+console.log("Hello, Vue! 🎉")
+
+
+</script>
+</body>
+</html>
